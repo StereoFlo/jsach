@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { HttpService as MainHttpService } from '@nestjs/axios';
 import { catchError, firstValueFrom, map, retry, throwError } from 'rxjs';
 import { BoardList } from './models/board-list';
-import Therad from "./models/therad";
+import Therad from './models/therad';
+import Board from './models/thread-list/board';
 
 @Injectable()
 export class HttpService {
@@ -22,7 +23,7 @@ export class HttpService {
     );
   }
 
-  getThreadList(id: string): Promise<any> {
+  getThreadList(id: string): Promise<Board> {
     return firstValueFrom(
       this.httpService.get(`https://2ch.hk/${id}/threads.json`).pipe(
         map((response) => {

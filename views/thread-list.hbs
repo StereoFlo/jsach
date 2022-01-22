@@ -28,7 +28,7 @@
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             {{#each list.threads}}
                 <div class="feature col">
-                    <h2><a href="/{{ ../boardId }}/{{ num }}">{{ subject }}</a></h2>
+                    <h2><a href="/{{ ../list.board }}/{{ num }}">{{ subject }}</a></h2>
                     <p>
                         Просмотров: {{ views }}
                     </p>

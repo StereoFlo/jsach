@@ -14,7 +14,7 @@ export class AppController {
   @Get(':id')
   @Render('thread-list')
   async getThreadList(@Param('id') id: string) {
-    return { list: await this.appService.getThreadList(id), boardId: id };
+    return { list: await this.appService.getThreadList(id)};
   }
 
   @Get(':id/:num')
