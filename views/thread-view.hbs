@@ -24,27 +24,18 @@
 
 <body>
 <main>
-    {{#each message}}
-        <div class="container px-4 py-5" id="featured-3">
-            <h2 class="pb-2 border-bottom">{{@key}}</h2>
+    <div class="container px-4 py-5" id="featured-3">
+        {{#each thread.threads.0.posts}}
             <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-                {{#each this}}
                     <div class="feature col">
-                        <h2><a href="/{{ id }}">{{ name }}</a> </h2>
+                        <h2>{{ name }}</h2>
                         <p>
-                            Страниц: {{ pages }}
+                            {{{ comment }}}
                         </p>
-                        <a href="/{{ id }}" class="icon-link">
-                            Перейти
-                            <svg class="bi" width="1em" height="1em">
-                                <use xlink:href="#chevron-right"/>
-                            </svg>
-                        </a>
                     </div>
-                {{/each}}
             </div>
-        </div>
-    {{/each}}
+        {{/each}}
+    </div>
 </main>
 </body>
 

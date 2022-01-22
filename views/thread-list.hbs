@@ -24,27 +24,21 @@
 
 <body>
 <main>
-    {{#each message}}
-        <div class="container px-4 py-5" id="featured-3">
-            <h2 class="pb-2 border-bottom">{{@key}}</h2>
-            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-                {{#each this}}
-                    <div class="feature col">
-                        <h2><a href="/{{ id }}">{{ name }}</a> </h2>
-                        <p>
-                            Страниц: {{ pages }}
-                        </p>
-                        <a href="/{{ id }}" class="icon-link">
-                            Перейти
-                            <svg class="bi" width="1em" height="1em">
-                                <use xlink:href="#chevron-right"/>
-                            </svg>
-                        </a>
-                    </div>
-                {{/each}}
-            </div>
+    <div class="container px-4 py-5" id="featured-3">
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            {{#each list.threads}}
+                <div class="feature col">
+                    <h2><a href="/{{ ../boardId }}/{{ num }}">{{ subject }}</a></h2>
+                    <p>
+                        Просмотров: {{ views }}
+                    </p>
+                    <p>
+                        {{{ comment }}}
+                    </p>
+                </div>
+            {{/each}}
         </div>
-    {{/each}}
+    </div>
 </main>
 </body>
 

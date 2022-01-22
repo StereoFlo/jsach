@@ -1,25 +1,25 @@
-import { Get, Controller, Render } from '@nestjs/common';
+import { Get, Controller, Render, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { map, of } from 'rxjs';
 
 @Controller()
 export class AppController {
-  constructor(private http: AppService) {}
+  constructor(private readonly appService: AppService) {}
 
   @Get()
   @Render('index')
-  root() {
-    return { message: this.test() };
+  async root() {
+    return { message: await this.appService.getAll() };
   }
 
-  test() {
-    const message = this.http.getAll().pipe(
-      map((result) => {
-        console.log(result);
-        return result.data;
-      }),
-    );
+  @Get(':id')
+  @Render('thread-list')
+  async getThreadList(@Param('id') id: string) {
+    return { list: await this.appService.getThreadList(id), boardId: id };
+  }
 
-    return of(message);
+  @Get(':id/:num')
+  @Render('thread-view')
+  async getThread(@Param('id') id: string, @Param('num') num: number) {
+    return { thread: await this.appService.getThread(id, num) };
   }
 }
