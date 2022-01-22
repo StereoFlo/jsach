@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { HttpService } from '@nestjs/axios';
+import { HttpService as MainHttpService } from '@nestjs/axios';
 import { catchError, firstValueFrom, map, retry, throwError } from 'rxjs';
+import { BoardList } from './boardList';
 
 @Injectable()
-export class AppService {
-  constructor(private httpService: HttpService) {}
+export class HttpService {
+  constructor(private httpService: MainHttpService) {}
 
-  getAll(): Promise<any> {
+  getAll(): Promise<BoardList> {
     return firstValueFrom(
       this.httpService
         .get('https://2ch.hk/makaba/mobile.fcgi?task=get_boards')
