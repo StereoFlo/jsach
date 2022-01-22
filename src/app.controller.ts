@@ -20,6 +20,6 @@ export class AppController {
   @Get(':id/:num')
   @Render('thread-view')
   async getThread(@Param('id') id: string, @Param('num') num: number) {
-    return { thread: await this.appService.getThread(id, num) };
+    return { posts: await this.appService.getThread(id, num) };
   }
 }
