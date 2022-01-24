@@ -20,13 +20,13 @@ export class AppController {
   @Get(':id/:num')
   @Render('thread-view')
   async getThread(@Param('id') id: string, @Param('num') num: number) {
-    try {
-      return { posts: await this.appService.getThread(id, num) };
-    } catch (c) {
-      console.log(c.response);
-      return {
-        error: c.status,
-      };
-    }
+    const posts = await this.appService.getThread(id, num);
+    const first = posts[0];
+    delete posts[0];
+    console.log(first);
+    return {
+      first,
+      all: posts,
+    };
   }
 }
