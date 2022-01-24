@@ -21,6 +21,8 @@ async function bootstrap() {
     },
     templates: join(__dirname, '..', 'views'),
   });
-  await app.listen(3000);
+  await app.listen(3000).then(() => {
+    console.log(`server listen on http://localhost:3000`);
+  });
 }
 bootstrap();
