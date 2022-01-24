@@ -21,12 +21,11 @@ export class AppController {
   @Render('thread-view')
   async getThread(@Param('id') id: string, @Param('num') num: number) {
     const posts = await this.appService.getThread(id, num);
-    const first = posts[0];
-    delete posts[0];
-    console.log(first);
+    const first = posts.posts[0];
+    delete posts.posts[0];
     return {
       first,
-      all: posts,
+      posts: posts.posts,
     };
   }
 }

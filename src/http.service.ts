@@ -10,7 +10,7 @@ import {
 } from 'rxjs';
 import { BoardList } from './models/board-list';
 import Board from './models/thread-list/board';
-import Post from './models/post';
+import { Threads } from './models/threads';
 
 @Injectable()
 export class HttpService {
@@ -34,10 +34,10 @@ export class HttpService {
     );
   }
 
-  getThread(id: string, num: number): Promise<Post[]> {
+  getThread(id: string, num: number): Promise<Threads> {
     return this.toPromise(
       this.getResponse(`https://2ch.hk/${id}/res/${num}.json`, (response) => {
-        return response.data.threads[0].posts;
+        return new Threads(response.data.threads[0]);
       }),
     );
   }
