@@ -1,9 +1,12 @@
 import { File } from './file';
 
 export default class Post {
+  constructor(post: object) {
+    Object.assign(this, post);
+  }
   banned: number;
   closed: number;
-  comment: string;
+  _comment: string;
   date: string;
   email: string;
   endless: number;

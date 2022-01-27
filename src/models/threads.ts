@@ -1,17 +1,11 @@
 import Post from './post';
 
 export class Threads {
-  private _posts: Post[];
+  posts = [];
 
-  constructor(data) {
-    Object.assign(this, data);
-  }
-
-  set posts(value: Post[]) {
-    this._posts = value;
-  }
-
-  get posts(): Post[] {
-    return this._posts;
+  constructor(data: any) {
+    data.posts.forEach((post) => {
+      this.posts.push(new Post(post));
+    }, this);
   }
 }
