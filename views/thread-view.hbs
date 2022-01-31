@@ -23,12 +23,32 @@
 <body>
 <main>
     <div class="container px-4 py-5" id="featured-3">
+        <div class="feature col" id="{{ first.num }}">
+            <h2>{{ first.name }}</h2>
+            <p>
+                {{{ first.comment }}}
+            </p>
+            {{#if files }}
+                <p>
+                    {{#each files}}
+                        <a href="https://2ch.hk{{ path }}"><img src="https://2ch.hk{{ thumbnail }}" alt="{{ displayname }}"></a>
+                    {{/each}}
+                </p>
+            {{/if}}
+        </div>
         {{#each posts}}
-            <div class="feature col">
+            <div class="feature col" id="{{ num }}">
                 <h3>{{ name }}</h3>
                 <p>
                     {{{ comment }}}
                 </p>
+                {{#if files }}
+                    <p>
+                    {{#each files}}
+                        <a href="https://2ch.hk{{ path }}"><img src="https://2ch.hk{{ thumbnail }}" alt="{{ displayname }}"></a>
+                    {{/each}}
+                    </p>
+                {{/if}}
             </div>
         {{/each}}
     </div>
