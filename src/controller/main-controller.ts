@@ -6,7 +6,6 @@ export class MainController {
   constructor(private readonly httpService: HttpService) {}
 
   @Get('/favicon.ico')
-  @Render('index')
   async favicon() {
     return {};
   }
