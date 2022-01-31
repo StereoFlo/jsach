@@ -7,41 +7,100 @@
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="../css/style.css">-->
 
     <!-- Favicons -->
     <meta name="theme-color" content="#7952b3">
 
     <style>
+        /* general*/
         a {
             color: black;
         }
+
+        /* index */
+
+
+
+        /* thread-list */
+        .thread-list .card {
+            margin-bottom: 15px;
+        }
+        .thread-list .card .card-text {
+            height: 215px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .thread-list .card .card-header{
+            max-height: 75px;
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        nav {
+            margin: 30px 0 30px;
+        }
     </style>
+
 </head>
 
 <body>
-<main>
-    {{#each message}}
-        <div class="container px-4 py-5" id="featured-3">
-            <h2 class="pb-2 border-bottom">{{@key}}</h2>
-            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-                {{#each this}}
-                    <div class="feature col">
-                        <h3><a href="/{{ id }}">{{ name }}</a> </h3>
-                        <p>
-                            Страниц: {{ pages }}
-                        </p>
-                        <a href="/{{ id }}" class="icon-link">
-                            Перейти
-                            <svg class="bi" width="1em" height="1em">
-                                <use xlink:href="#chevron-right"/>
-                            </svg>
-                        </a>
-                    </div>
-                {{/each}}
-            </div>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border border-dark rounded">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <h3 class="m-0">JSACH</h3>
+            </a>
         </div>
-    {{/each}}
+    </nav>
+</div>
+<main>
+
+    <div class="container">
+
+                <div class="accordion">
+                    {{#each message}}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-{{ id }}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                {{@key}}
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-{{ id }}" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            <div class="accordion-body">
+                                <div class="container">
+                                    <div class="row row-cols-1 row-cols-lg-3">
+                                        {{#each this}}
+                                            <div class="subject">
+                                                <h3><a href="/{{ id }}">{{ name }}</a> </h3>
+                                                <p>
+                                                    Страниц: {{ pages }}
+                                                </p>
+                                                <a href="/{{ id }}" class="icon-link">
+                                                    Перейти
+                                                    <svg class="bi" width="1em" height="1em">
+                                                        <use xlink:href="#chevron-right"/>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        {{/each}}
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+
+    </div>
+
+
 </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>

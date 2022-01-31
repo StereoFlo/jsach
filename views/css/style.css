@@ -1,0 +1,33 @@
+/* general*/
+a {
+    color: black;
+}
+
+/* index */
+
+
+
+/* thread-list */
+.thread-list .card {
+    margin-bottom: 15px;
+}
+.thread-list .card .card-body {
+    max-height: 287px;
+    overflow: hidden;
+}
+.thread-list .card .card-text {
+    height: 255px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.thread-list .card .card-header{
+    max-height: 75px;
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+nav {
+    margin: 30px 0 30px;
+}
