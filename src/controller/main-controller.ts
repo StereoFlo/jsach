@@ -7,7 +7,7 @@ export class MainController {
 
   @Get('/favicon.ico')
   async favicon() {
-    return {};
+    return { OK: '' };
   }
 
   @Get()
