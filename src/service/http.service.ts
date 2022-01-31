@@ -8,9 +8,9 @@ import {
   retry,
   throwError,
 } from 'rxjs';
-import { BoardList } from './models/board-list';
-import Board from './models/thread-list/board';
-import { Threads } from './models/threads';
+import { BoardList } from '../models/board-list';
+import Board from '../models/thread-list/board';
+import { Threads } from '../models/threads';
 
 @Injectable()
 export class HttpService {

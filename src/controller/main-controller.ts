@@ -1,9 +1,15 @@
 import { Get, Controller, Render, Param } from '@nestjs/common';
-import { HttpService } from './http.service';
+import { HttpService } from '../service/http.service';
 
 @Controller()
-export class AppController {
+export class MainController {
   constructor(private readonly httpService: HttpService) {}
+
+  @Get('/favicon.ico')
+  @Render('index')
+  async favicon() {
+    return { message: '' };
+  }
 
   @Get()
   @Render('index')

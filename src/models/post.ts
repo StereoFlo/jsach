@@ -1,12 +1,15 @@
-import { File } from './file';
+import { File } from './post/file';
 
 export default class Post {
-  constructor(post: object) {
+  constructor(post: Post) {
     Object.assign(this, post);
+    if (post.comment) {
+      this.setComment(post.comment);
+    }
   }
   banned: number;
   closed: number;
-  _comment: string;
+  comment: string;
   date: string;
   email: string;
   endless: number;
@@ -22,4 +25,8 @@ export default class Post {
   tags: string;
   timestamp: number;
   trip: string;
+
+  private setComment(comment: string): void {
+    this.comment = comment;
+  }
 }
