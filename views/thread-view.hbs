@@ -14,8 +14,76 @@
     <meta name="theme-color" content="#7952b3">
 
     <style>
+        /* general*/
         a {
             color: black;
+        }
+
+        /* index */
+
+
+        /* thread-list */
+        .thread-list .card {
+            margin-bottom: 15px;
+        }
+
+        .thread-list .card .card-text {
+            height: 215px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .thread-list .card .card-header {
+            max-height: 75px;
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        nav {
+            margin: 30px 0 30px;
+        }
+
+        .accordion-item {
+        }
+        .accordion-button:not(.collapsed)::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        .accordion-button {
+            font-size: 22px;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+        }
+        .accordion-button:not(.collapsed) {
+            color: white;
+            background-color: rgb(115, 115, 115);
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .accordion-body {
+            background-color: rgb(248,249,250);
+            padding: 16px 10px;
+        }
+        .subject {
+
+            padding: 7px;
+        }
+        .subject-content {
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid rgba(0,0,0,.125);
+            height: 100%;
+        }
+        .subject-content p {
+            font-size: 14px;
+        }
+        .btn-outline-secondary:hover {
+            background-color: rgb(115, 115, 115);
         }
     </style>
 </head>
@@ -53,6 +121,27 @@
         {{/each}}
     </div>
 </main>
+
+<div class="container">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
 </body>
 
 </html>
