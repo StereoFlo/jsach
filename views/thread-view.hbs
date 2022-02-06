@@ -4,124 +4,81 @@
 <head>
     <meta charset="utf-8">
     <title>Jsach</title>
+
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="../css/style.css">
 
     <!-- Favicons -->
-
     <meta name="theme-color" content="#7952b3">
-
-    <style>
-        /* general*/
-        a {
-            color: black;
-        }
-
-        /* index */
-
-
-        /* thread-list */
-        .thread-list .card {
-            margin-bottom: 15px;
-        }
-
-        .thread-list .card .card-text {
-            height: 215px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .thread-list .card .card-header {
-            max-height: 75px;
-            min-height: 75px;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        nav {
-            margin: 30px 0 30px;
-        }
-
-        .accordion-item {
-        }
-        .accordion-button:not(.collapsed)::after {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-        }
-
-        .accordion-button {
-            font-size: 22px;
-        }
-
-        .accordion-button:focus {
-            box-shadow: none;
-        }
-        .accordion-button:not(.collapsed) {
-            color: white;
-            background-color: rgb(115, 115, 115);
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-        }
-        .accordion-body {
-            background-color: rgb(248,249,250);
-            padding: 16px 10px;
-        }
-        .subject {
-
-            padding: 7px;
-        }
-        .subject-content {
-            background-color: white;
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid rgba(0,0,0,.125);
-            height: 100%;
-        }
-        .subject-content p {
-            font-size: 14px;
-        }
-        .btn-outline-secondary:hover {
-            background-color: rgb(115, 115, 115);
-        }
-    </style>
 </head>
 
 <body>
-<main>
-    <div class="container px-4 py-5" id="featured-3">
-        <div class="feature col" id="{{ first.num }}">
-            <h2>{{ first.name }}</h2>
-            <p>
-                {{{ first.comment }}}
-            </p>
-            {{#if files }}
-                <p>
-                    {{#each files}}
-                        <a href="https://2ch.hk{{ path }}"><img src="https://2ch.hk{{ thumbnail }}" alt="{{ displayname }}"></a>
-                    {{/each}}
-                </p>
-            {{/if}}
-        </div>
-        {{#each posts}}
-            <div class="feature col" id="{{ num }}">
-                <h3>{{ name }}</h3>
-                <p>
-                    {{{ comment }}}
-                </p>
-                {{#if files }}
-                    <p>
-                    {{#each files}}
-                        <a href="https://2ch.hk{{ path }}"><img src="https://2ch.hk{{ thumbnail }}" alt="{{ displayname }}"></a>
-                    {{/each}}
-                    </p>
-                {{/if}}
+<!-- Nav -->
+<div class="nav-container bg-dark">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg border border-light text-white rounded">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <h3 class="m-0">JSACH</h3>
+                </a>
             </div>
-        {{/each}}
+        </nav>
+    </div>
+</div>
+<!-- /Nav -->
+
+<main>
+    <div class="container">
+        <div class="thread-body">
+            <h1 class="thread-subject">{{ first.subject }}</h1>
+            <div class="thread-item">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>{{ first.name }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>{{{ first.comment }}}</p>
+                        {{#if files }}
+                            <p>
+                                {{#each files}}
+                                    <a href="https://2ch.hk{{ path }}"><img src="https://2ch.hk{{ thumbnail }}" alt="{{ displayname }}"></a>
+                                {{/each}}
+                            </p>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            {{#each posts}}
+                <div class="feature col thread-reply" id="{{ num }}">
+                    <div class="thread-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>{{ name }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>{{{ comment }}}</p>
+                                {{#if files }}
+                                    <p>
+                                        {{#each files}}
+                                            <a href="https://2ch.hk{{ path }}"><img src="https://2ch.hk{{ thumbnail }}" alt="{{ displayname }}"></a>
+                                        {{/each}}
+                                    </p>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+
     </div>
 </main>
 
+<!-- Pagination -->
 <div class="container">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
@@ -141,6 +98,33 @@
         </ul>
     </nav>
 </div>
+<!-- /Pagination -->
+
+<!-- Footer -->
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: CTA -->
+        <section class="">
+            <p class="d-flex justify-content-center align-items-center">
+                <span class="me-3">If you click nothing will happen</span>
+                <button type="button" class="btn btn-outline-light btn-rounded">
+                    PRESS BRAVELY!
+                </button>
+            </p>
+        </section>
+        <!-- Section: CTA -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3">
+        © 2020 Copyright:
+        <a class="text-white" href="https://github.com/StereoFlo">StereoFlo</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- /Footer -->
 
 </body>
 
