@@ -2,7 +2,7 @@ import { File } from './post/file';
 
 export default class Post {
   private readonly internalLinksPattern =
-    '<a href="/([a-z]+)/res/([0-9]+).html#([0-9]+)" class="post-reply-link" data-thread="[0-9]+" data-num="[0-9]+">>>[0-9]+</a>';
+    /<a href="\/([a-z]+)\/res\/([0-9]+).html#([0-9]+)" class="post-reply-link" data-thread="[0-9]+" data-num="[0-9]+">>>[0-9]+((\s)\(OP\))?<\/a>/;
 
   constructor(post: Post) {
     Object.assign(this, post);
@@ -31,8 +31,9 @@ export default class Post {
 
   private setComment(comment: string): void {
     this.comment = comment.replace(
-      new RegExp(this.internalLinksPattern, 'gm'),
+      new RegExp(this.internalLinksPattern, 'g'),
       '<a href="/$1/$2#$3">$3</a>',
     );
+    console.log(this.comment);
   }
 }
