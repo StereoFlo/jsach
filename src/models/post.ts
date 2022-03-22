@@ -34,6 +34,5 @@ export default class Post {
       new RegExp(this.internalLinksPattern, 'g'),
       '<a href="/$1/$2#$3">$3</a>',
     );
-    console.log(this.comment);
   }
 }

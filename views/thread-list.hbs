@@ -37,17 +37,18 @@
     <div class="container">
         <div class="thread-body">
             <div class="row row-cols-1 row-cols-lg-3">
+                {{@log list }}
                 {{#each list.threads}}
                     <div class="thread-item">
                         <div class="card">
                             <div class="card-header">
-                                <h5><a href="/{{ ../list.board }}/{{ num }}">{{ subject }}</a></h5>
+                                <h5><a href="/{{ ../list.Board }}/{{ thread_num }}">{{{ posts.[0].comment }}}</a></h5>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Просмотров: {{ views }}</li>
+                                <li class="list-group-item">Постов: {{ posts_count }}</li>
                             </ul>
                             <div class="card-body">
-                                <p class="card-text">{{{ comment }}}</p>
+                                <p class="card-text">{{{ posts.[0].comment }}}</p>
                             </div>
                         </div>
                     </div>
@@ -68,9 +69,13 @@
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            {{#each paginationStart}}
+                <li class="page-item"><a class="page-link" href="/{{ ../list.Board }}?page={{ this }}"> {{ this }}</a></li>
+            {{/each}}
+            ...
+            {{#each paginationEnd}}
+                <li class="page-item"><a class="page-link" href="/{{ ../list.Board }}?page={{ this }}"> {{ this }}</a></li>
+            {{/each}}
             <li class="page-item">
                 <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>

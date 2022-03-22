@@ -11,6 +11,7 @@ import {
 import { BoardList } from '../models/board-list';
 import Board from '../models/thread-list/board';
 import { Threads } from '../models/threads';
+import { ThreadList } from '../models/thread-list';
 
 @Injectable()
 export class HttpService {
@@ -25,10 +26,10 @@ export class HttpService {
     );
   }
 
-  getThreadList(id: string): Promise<Board> {
+  getThreadList(id: string, page = 1): Promise<ThreadList> {
     return this.toPromise(
       this.getResponse(
-        `https://2ch.hk/${id}/threads.json`,
+        `https://2ch.hk/${id}/${page}.json`,
         (response) => response.data,
       ),
     );

@@ -1,4 +1,4 @@
-import { Get, Controller, Render, Param } from '@nestjs/common';
+import { Get, Controller, Render, Param, Query } from '@nestjs/common';
 import { HttpService } from '../service/http.service';
 
 @Controller()
@@ -18,8 +18,15 @@ export class MainController {
 
   @Get(':id')
   @Render('thread-list')
-  async getThreadList(@Param('id') id: string) {
-    return { list: await this.httpService.getThreadList(id) };
+  async getThreadList(@Param('id') id: string, @Query('page') page = 1) {
+    const list = await this.httpService.getThreadList(id, page);
+    const paginationStart = list.pages.slice(0, 3);
+    const paginationEnd = list.pages.slice(
+      list.pages.length - 3,
+      list.pages.length,
+    );
+
+    return { list, paginationStart, paginationEnd };
   }
 
   @Get(':id/:num')
