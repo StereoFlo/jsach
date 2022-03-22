@@ -9,7 +9,6 @@ import {
   throwError,
 } from 'rxjs';
 import { BoardList } from '../models/board-list';
-import Board from '../models/thread-list/board';
 import { Threads } from '../models/threads';
 import { ThreadList } from '../models/thread-list';
 
