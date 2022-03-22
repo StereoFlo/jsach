@@ -34,16 +34,32 @@ export class ThreadList {
   max_files_size: number;
   pages: number[];
   threads: Thread[];
+
+  constructor(data: any) {
+    Object.assign(this, data);
+    this.threads = [];
+    if (data.threads && Array.isArray(data.threads)) {
+      data.threads.forEach((data) => this.threads.push(new Thread(data)));
+    }
+  }
 }
 
-interface Thread {
+class Thread {
   files_count: number;
   posts: Post[];
   posts_count: number;
   thread_num: string;
+
+  constructor(data: any) {
+    Object.assign(this, data);
+    this.posts = [];
+    if (data.posts && Array.isArray(data.posts)) {
+      data.posts.forEach((data) => this.posts.push(new Post(data)));
+    }
+  }
 }
 
-interface Post {
+class Post {
   banned: number;
   closed: number;
   comment: string;
@@ -63,9 +79,13 @@ interface Post {
   tags?: string;
   timestamp: number;
   trip: string;
+
+  constructor(data: any) {
+    Object.assign(this, data);
+  }
 }
 
-interface File {
+class File {
   displayname: string;
   fullname?: string;
   height: number;

@@ -29,7 +29,7 @@ export class HttpService {
     return this.toPromise(
       this.getResponse(
         `https://2ch.hk/${id}/${page}.json`,
-        (response) => response.data,
+        (response) => new ThreadList(response.data),
       ),
     );
   }

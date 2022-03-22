@@ -37,15 +37,14 @@
     <div class="container">
         <div class="thread-body">
             <div class="row row-cols-1 row-cols-lg-3">
-                {{@log list }}
                 {{#each list.threads}}
                     <div class="thread-item">
                         <div class="card">
                             <div class="card-header">
-                                <h5><a href="/{{ ../list.Board }}/{{ thread_num }}">{{{ posts.[0].comment }}}</a></h5>
+                                <h5><a href="/{{ ../list.Board }}/{{ thread_num }}">{{{ posts.[0].subject }}}</a></h5>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Постов: {{ posts_count }}</li>
+                                <li class="list-group-item">Ответов: {{ posts_count }}</li>
                             </ul>
                             <div class="card-body">
                                 <p class="card-text">{{{ posts.[0].comment }}}</p>
