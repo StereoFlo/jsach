@@ -31,13 +31,30 @@ export class MainController {
 
   @Get(':id/:num')
   @Render('thread-view')
-  async getThread(@Param('id') id: string, @Param('num') num: number) {
-    const posts = await this.httpService.getThread(id, num);
-    const first = posts.posts[0];
-    delete posts.posts[0];
+  async getThread(
+    @Param('id') id: string,
+    @Param('num') num: number,
+    @Query('page') page = 1,
+  ) {
+    const threads = await this.httpService.getThread(id, num);
+    const first = threads.posts[0];
+    delete threads.posts[0];
+    const total = Math.ceil(threads.posts.length / 10);
+    const offset = (page - 1) * 10;
+    const posts = threads.posts.slice(offset, 10 + offset);
+    const pages = [];
+    for (let i = 1, len = total; i <= len; i += 1) {
+      pages.push(i);
+    }
     return {
       first,
-      posts: posts.posts,
+      posts,
+      pagination: {
+        total,
+        page,
+        first: pages.slice(0, 3),
+        last: pages.slice(total - 3, total),
+      },
     };
   }
 }
