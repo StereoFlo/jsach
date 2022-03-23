@@ -45,7 +45,8 @@
                         {{#if first.files }}
                             <p>
                                 {{#each first.files}}
-                                    <a href="https://2ch.hk{{ path }}"><img src="https://2ch.hk{{ thumbnail }}" alt="{{ displayname }}"></a>
+                                    <a href="https://2ch.hk{{ path }}"><img src="https://2ch.hk{{ thumbnail }}"
+                                                                            alt="{{ displayname }}"></a>
                                 {{/each}}
                             </p>
                         {{/if}}
@@ -64,7 +65,8 @@
                                 {{#if files }}
                                     <p>
                                         {{#each files}}
-                                            <a href="https://2ch.hk{{ path }}"><img src="https://2ch.hk{{ thumbnail }}" alt="{{ displayname }}"></a>
+                                            <a href="https://2ch.hk{{ path }}"><img src="https://2ch.hk{{ thumbnail }}"
+                                                                                    alt="{{ displayname }}"></a>
                                         {{/each}}
                                     </p>
                                 {{/if}}
@@ -82,11 +84,11 @@
 <div class="container">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-            {{#each pagination.first}}
+            {{#each pagination.getRangeStart}}
                 <li class="page-item"><a class="page-link" href="?page={{ this }}"> {{ this }}</a></li>
             {{/each}}
             <li class="page-item"> {{ pagination.page }} </li>
-            {{#each pagination.last}}
+            {{#each pagination.getRangeEnd}}
                 <li class="page-item"><a class="page-link" href="?page={{ this }}"> {{ this }}</a></li>
             {{/each}}
         </ul>
