@@ -137,3 +137,9 @@ nav a {
 .pagination a {
     color: black;
 }
+
+@media screen and (max-width: 600px) {
+    .nav-container {
+        margin-bottom: 35px;
+    }
+}
