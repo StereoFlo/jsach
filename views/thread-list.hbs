@@ -42,13 +42,13 @@
                     <div class="thread-item">
                         <div class="card">
                             <div class="card-header">
-                                <h5><a href="/{{ ../list.board }}/{{ num }}">{{ subject }}</a></h5>
+                                <h5><a href="/{{ ../list.Board }}/{{ thread_num }}">{{{ posts.[0].subject }}}</a></h5>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Просмотров: {{ views }}</li>
+                                <li class="list-group-item">Ответов: {{ posts_count }}</li>
                             </ul>
                             <div class="card-body">
-                                <p class="card-text">{{{ comment }}}</p>
+                                <p class="card-text">{{{ posts.[0].comment }}}</p>
                             </div>
                         </div>
                     </div>
@@ -69,9 +69,13 @@
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            {{#each paginationStart}}
+                <li class="page-item"><a class="page-link" href="/{{ ../list.Board }}?page={{ this }}"> {{ this }}</a></li>
+            {{/each}}
+            ...
+            {{#each paginationEnd}}
+                <li class="page-item"><a class="page-link" href="/{{ ../list.Board }}?page={{ this }}"> {{ this }}</a></li>
+            {{/each}}
             <li class="page-item">
                 <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
@@ -98,13 +102,6 @@
         <!-- Section: CTA -->
     </div>
     <!-- Grid container -->
-
-    <!-- Copyright -->
-    <div class="text-center p-3">
-        © 2020 Copyright:
-        <a class="text-white" href="https://github.com/StereoFlo">StereoFlo</a>
-    </div>
-    <!-- Copyright -->
 </footer>
 <!-- /Footer -->
 
