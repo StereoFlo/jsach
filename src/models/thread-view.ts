@@ -1,4 +1,4 @@
-export class ThreadList {
+export class ThreadView {
   Board: string;
   BoardInfo: string;
   BoardInfoOuter: string;
@@ -44,7 +44,7 @@ export class ThreadList {
   }
 }
 
-class Thread {
+export class Thread {
   files_count: number;
   posts: Post[];
   posts_count: number;
@@ -59,7 +59,16 @@ class Thread {
   }
 }
 
-class Post {
+export class Post {
+  private readonly internalLinksPattern =
+    /<a href="\/([a-z]+)\/res\/([0-9]+).html#([0-9]+)" class="post-reply-link" data-thread="[0-9]+" data-num="[0-9]+">>>[0-9]+((\s)\(OP\))?<\/a>/;
+
+  constructor(post: Post) {
+    Object.assign(this, post);
+    if (post.comment) {
+      this.setComment(post.comment);
+    }
+  }
   banned: number;
   closed: number;
   comment: string;
@@ -67,25 +76,27 @@ class Post {
   email: string;
   endless: number;
   files: File[];
-  files_count?: number;
   lasthit: number;
   name: string;
-  num: string;
+  num: number;
+  number: number;
   op: number;
   parent: string;
-  posts_count?: number;
   sticky: number;
   subject: string;
-  tags?: string;
+  tags: string;
   timestamp: number;
   trip: string;
 
-  constructor(data: any) {
-    Object.assign(this, data);
+  private setComment(comment: string): void {
+    this.comment = comment.replace(
+      new RegExp(this.internalLinksPattern, 'g'),
+      '<a href="/$1/$2#$3">$3</a>',
+    );
   }
 }
 
-class File {
+export class File {
   displayname: string;
   fullname?: string;
   height: number;

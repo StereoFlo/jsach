@@ -9,8 +9,7 @@ import {
   throwError,
 } from 'rxjs';
 import { BoardList } from '../models/board-list';
-import { Threads } from '../models/threads';
-import { ThreadList } from '../models/thread-list';
+import { ThreadView } from '../models/thread-view';
 
 @Injectable()
 export class HttpService {
@@ -25,19 +24,19 @@ export class HttpService {
     );
   }
 
-  getThreadList(id: string, page = 1): Promise<ThreadList> {
+  getThreadList(id: string, page = 1): Promise<ThreadView> {
     return this.toPromise(
       this.getResponse(
         `https://2ch.hk/${id}/${page}.json`,
-        (response) => new ThreadList(response.data),
+        (response) => new ThreadView(response.data),
       ),
     );
   }
 
-  getThread(id: string, num: number): Promise<Threads> {
+  getThread(id: string, num: number): Promise<ThreadView> {
     return this.toPromise(
       this.getResponse(`https://2ch.hk/${id}/res/${num}.json`, (response) => {
-        return new Threads(response.data.threads[0]);
+        return new ThreadView(response.data);
       }),
     );
   }

@@ -35,13 +35,15 @@ export class MainController {
     @Param('id') id: string,
     @Param('num') num: number,
     @Query('page') page = 1,
+    @Query('limit') limit = 10,
   ) {
-    const threads = await this.httpService.getThread(id, num);
+    const thread = await this.httpService.getThread(id, num);
+    const threads = thread.threads[0];
     const first = threads.posts[0];
     delete threads.posts[0];
-    const total = Math.ceil(threads.posts.length / 10);
+    const total = Math.ceil(threads.posts.length / limit);
     const offset = (page - 1) * 10;
-    const posts = threads.posts.slice(offset, 10 + offset);
+    const posts = threads.posts.slice(offset, limit + offset);
     const pages = [];
     for (let i = 1, len = total; i <= len; i += 1) {
       pages.push(i);
