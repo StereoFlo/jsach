@@ -1,42 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>{{ list.BoardName }}</title>
-    <meta name="description" content="{{ list.BoardInfo }}в">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <!-- Style -->
-    <link rel="stylesheet" href="../css/style.css">
-
-    <!-- Favicons -->
-    <meta name="theme-color" content="#7952b3">
-</head>
-
-<body>
-
-<!-- Nav -->
-<div class="nav-container bg-dark">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg border border-light text-white rounded">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <h3 class="m-0">JSACH</h3>
-                </a>
-            </div>
-        </nav>
-    </div>
-</div>
-<!-- /Nav -->
-
+{{> header this}}
 <!-- Main -->
 <main>
     <div class="container">
+        <div class="thread-item">
+            <div class="card">
+                <div class="card-body">
+                    <p>{{ list.BoardName }} /{{ list.Board }}</p>
+                    <p>{{ list.BoardInfo }}</p>
+                </div>
+            </div>
+        </div>
         <div class="thread-body">
             <div class="row row-cols-1 row-cols-lg-3">
                 {{#each list.threads}}
@@ -71,11 +44,13 @@
                 </a>
             </li>
             {{#each paginationStart}}
-                <li class="page-item"><a class="page-link" href="/{{ ../list.Board }}?page={{ this }}"> {{ this }}</a></li>
+                <li class="page-item"><a class="page-link" href="/{{ ../list.Board }}?page={{ this }}"> {{ this }}</a>
+                </li>
             {{/each}}
             ...
             {{#each paginationEnd}}
-                <li class="page-item"><a class="page-link" href="/{{ ../list.Board }}?page={{ this }}"> {{ this }}</a></li>
+                <li class="page-item"><a class="page-link" href="/{{ ../list.Board }}?page={{ this }}"> {{ this }}</a>
+                </li>
             {{/each}}
             <li class="page-item">
                 <a class="page-link" href="#" aria-label="Next">
@@ -86,23 +61,4 @@
     </nav>
 </div>
 <!-- /Pagination -->
-
-<!-- Footer -->
-<footer class="bg-dark text-center text-white">
-    <!-- Grid container -->
-    <div class="container p-4 pb-0">
-        <!-- Section: CTA -->
-        <section class="">
-            <p class="d-flex justify-content-center align-items-center">
-                <span class="me-3">ДИСКЛЕЙМЕР: Этот сайт, является лишь представлением (клиентом) к большой базе 2ch. На этом сервере не хранятся ни данные, ни файлы, ни чего либо подобного.</span>
-            </p>
-        </section>
-        <!-- Section: CTA -->
-    </div>
-    <!-- Grid container -->
-</footer>
-<!-- /Footer -->
-
-</body>
-
-</html>
+{{> footer}}
